@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viacheslav Shumilov — Technical Documentation &amp; Product Content</title>
+  <meta name="description" content="Senior technical writer, UX writer, and documentation systems specialist. 15+ years building knowledge bases, product copy, and documentation infrastructure.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:   #1A6B5C;
+      --accent2:  #0d4a3f;
+      --text:     #1a1a1a;
+      --muted:    #6b7280;
+      --light:    #f4f6f5;
+      --border:   #e5e7eb;
+      --white:    #ffffff;
+      --tag-bg:   #e8f4f1;
+      --tag-text: #1A6B5C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    nav .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 80px 0 72px;
+      border-top: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-bottom: 40px;
+    }
+
+    .hero-contacts a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .hero-contacts a:hover { color: var(--accent); }
+    .hero-contacts svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--white);
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .hero-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+    .hero-cta svg { width: 15px; height: 15px; }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 36px;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #374151;
+      max-width: 680px;
+    }
+
+    .about-text p + p { margin-top: 16px; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item .stat-num {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-item .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── EXPERTISE CARDS ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 40px; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+    .exp-meta {
+      padding-top: 2px;
+    }
+
+    .exp-dates {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .exp-company {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .exp-location {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .exp-body h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .exp-body ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .exp-body li {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.55;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .exp-body li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .exp-body li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(26,107,92,0.1);
+    }
+
+    .project-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-icon { font-size: 24px; }
+
+    .project-arrow {
+      color: var(--muted);
+      font-size: 18px;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .project-card:hover .project-arrow {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    .project-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .project-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .skill-group h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: var(--light);
+      color: var(--text);
+      font-size: 13px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .edu-item {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .edu-item { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    .edu-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .edu-body h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .edu-body p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--light);
+    }
+
+    .contact-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .contact-inner h2 {
+      margin-bottom: 0;
+    }
+
+    .contact-inner p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 440px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .contact-link.primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .contact-link.primary:hover { background: var(--accent2); }
+
+    .contact-link.secondary {
+      background: var(--white);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .contact-link.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .contact-link svg { width: 15px; height: 15px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── UTILITIES ── */
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-name">VS</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Available for remote work</p>
+    <h1>Viacheslav<br>Shumilov</h1>
+    <p class="hero-subtitle">
+      Technical writer, UX writer, and documentation systems specialist
+      with 15+ years turning complex processes into clear, structured, and useful content.
+    </p>
+    <div class="hero-contacts">
+      <a href="mailto:shumilov.vyacheslavv@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        shumilov.vyacheslavv@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/v-shumilov" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/v-shumilov
+      </a>
+      <a href="https://t.me/wshum" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        @wshum
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Montenegro · Remote
+      </a>
+    </div>
+    <a href="mailto:shumilov.vyacheslavv@gmail.com" class="hero-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Get in touch
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <h2>What I do</h2>
+    <div class="about-text">
+      <p>
+        I build documentation systems, write product copy, and design information architecture for
+        engineering-driven organizations. My background spans railway engineering, enterprise software,
+        and mobile product development — giving me rare depth when writing for technical audiences
+        without losing the end user.
+      </p>
+      <p>
+        At TechnoGroup, I led the implementation of a PLM/IPS knowledge platform — defining taxonomy,
+        migrating 300+ documents, building the template system, and reducing document retrieval from
+        15 minutes to 3 minutes. At ИЦПС, I maintained a 1,000+ document library across 20 concurrent
+        certification programmes with zero regulatory rejections over 9 years.
+      </p>
+      <p>
+        Since 2023 I've been building Android apps as a solo developer — which means I've also written
+        all the product copy: onboarding flows, microcopy, push notifications, gamification content,
+        and app store listings.
+      </p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Years in technical documentation</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1,000+</div>
+        <div class="stat-label">Technical documents produced</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5×</div>
+        <div class="stat-label">Faster document retrieval (KM project)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Android apps published on Google Play</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="container">
+    <p class="section-label">Expertise</p>
+    <h2>What I bring</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Knowledge Management</h3>
+        <p>Designing and implementing knowledge bases, taxonomies, and documentation systems. PLM/IPS platforms, Confluence-style wikis, SOPs, runbooks, and process maps.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h3>UX Writing</h3>
+        <p>Product microcopy, onboarding flows, push notification logic, error messages, empty states, and gamification content for mobile applications.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📐</div>
+        <h3>Technical Documentation</h3>
+        <p>Regulatory submissions, certification packages, test protocols, conformity reports, and structured libraries for engineering and compliance-heavy environments.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>UI/UX &amp; Product</h3>
+        <p>End-to-end mobile product design in Figma, from user research and CJM to prototyping and Google Play launch. Android development in Kotlin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <h2>Where I've worked</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">Nov 2023<br>Present</div>
+          <div class="exp-company">TechnoGroup Ltd.</div>
+          <div class="exp-location">Remote · Montenegro</div>
+        </div>
+        <div class="exp-body">
+          <h3>Head of Technical Documentation · PLM Knowledge Lead</h3>
+          <ul>
+            <li>Led end-to-end implementation of an IPS/PLM platform as the organisation's primary knowledge management system — defined taxonomy for 3 departments, coordinated migration of 300+ documents.</li>
+            <li>Designed a universal template system: <strong>350 → 25 parameterised forms</strong>, reducing per-document QA time by 80% and saving ~€5,000/month.</li>
+            <li>Reduced knowledge retrieval time from <strong>15 minutes to 3 minutes</strong> by restructuring folder hierarchy and introducing metadata and cross-reference links.</li>
+            <li>Managed a team of 3 technical writers; ran sprint-style planning, quality reviews, and KPI reporting to senior management.</li>
+            <li>Authored all user training materials and SOPs; served as primary liaison between engineering, IT, and QA.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">Nov 2023<br>Present</div>
+          <div class="exp-company">Self-employed</div>
+          <div class="exp-location">Remote · Montenegro</div>
+        </div>
+        <div class="exp-body">
+          <h3>UX Writer &amp; Android Developer</h3>
+          <ul>
+            <li>Sole author of all product copy across <strong>4 published Android apps</strong>: onboarding, microcopy, error states, push notifications, and Google Play store listings.</li>
+            <li>Designed a 3-state push notification system for Love IS (language app): re-engagement after inactivity, daily goal nudge, and deliberate silence on goal completion.</li>
+            <li>Built full gamification content layer: 5-tier badge system, streak messages, milestone states, and progress copy.</li>
+            <li>Used Figma throughout for UI design and content annotations; developed in Kotlin.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">Sep 2014<br>Jan 2023</div>
+          <div class="exp-company">Railcar Engineering Center (ИЦПС)</div>
+          <div class="exp-location">Saint-Petersburg, Russia</div>
+        </div>
+        <div class="exp-body">
+          <h3>Senior Engineer · Documentation Lead</h3>
+          <ul>
+            <li>Maintained a <strong>1,000+ document library</strong> across 20+ concurrent certification programmes: test protocols, conformity reports, regulatory submissions, and client technical conclusions.</li>
+            <li>Standardised documentation templates for all certification phases — eliminating ad-hoc formatting and enabling auditable records.</li>
+            <li>Adapted the same content for 4 distinct audiences: field engineers, QA reviewers, regulators, and B2B clients.</li>
+            <li><strong>Zero regulatory rejections</strong> due to documentation errors over 9 years.</li>
+            <li>Generated ~€120,000 annual revenue through efficient delivery of certification packages.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates">May 2009<br>Sep 2014</div>
+          <div class="exp-company">Expert Centre (ЭЦПС)</div>
+          <div class="exp-location">Saint-Petersburg, Russia</div>
+        </div>
+        <div class="exp-body">
+          <h3>Inspector · Technical Writer</h3>
+          <ul>
+            <li>Authored <strong>400+ expert technical conclusions</strong> across 1,700+ asset inspections.</li>
+            <li>Developed personal writing system reducing report production time by 30% while maintaining full regulatory compliance.</li>
+            <li>Designed structured diagnostic checklists (field runbooks) for inspection teams.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects &amp; Portfolio</p>
+    <h2>Selected work</h2>
+    <div class="projects-grid">
+
+      <a href="https://play.google.com/store/apps/details?id=com.wshum.love_is" target="_blank" rel="noopener" class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">💬</div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3>Love IS</h3>
+        <p>Language learning app with a full gamification system: daily streaks, 5-tier badges, smart push notifications, and adaptive progress tracking.</p>
+        <div class="project-tags">
+          <span class="tag">UX Writing</span>
+          <span class="tag">Kotlin</span>
+          <span class="tag">Gamification</span>
+        </div>
+      </a>
+
+      <a href="https://play.google.com/store/apps/developer?id=Viacheslav+Shumilov" target="_blank" rel="noopener" class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">🗺️</div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3>MNE Services</h3>
+        <p>Service marketplace app for Montenegro. Bilingual UX, category taxonomy design, geo-location integration, and full in-app content system.</p>
+        <div class="project-tags">
+          <span class="tag">Content Design</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Android</span>
+        </div>
+      </a>
+
+      <a href="https://play.google.com/store/apps/developer?id=Viacheslav+Shumilov" target="_blank" rel="noopener" class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">🚂</div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3>Wagon Guide</h3>
+        <p>Industrial reference app for freight wagon engineers. Information architecture for 200+ technical entries with search and complex filtering.</p>
+        <div class="project-tags">
+          <span class="tag">Info Architecture</span>
+          <span class="tag">Technical Copy</span>
+          <span class="tag">Android</span>
+        </div>
+      </a>
+
+      <a href="https://www.behance.net/vvshum" target="_blank" rel="noopener" class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">🎨</div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3>Behance Portfolio</h3>
+        <p>UI/UX case studies including full design process: user research, CJM, Figma prototypes, and final product screens.</p>
+        <div class="project-tags">
+          <span class="tag">UI/UX Design</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Case Studies</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Skills</p>
+    <h2>Tools &amp; capabilities</h2>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h3>Documentation &amp; KM</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">PLM / IPS platforms</span>
+          <span class="skill-tag">Confluence-style wikis</span>
+          <span class="skill-tag">SOPs &amp; runbooks</span>
+          <span class="skill-tag">Taxonomy design</span>
+          <span class="skill-tag">Template systems</span>
+          <span class="skill-tag">Regulatory documentation</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Content &amp; UX Writing</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Microcopy</span>
+          <span class="skill-tag">Onboarding flows</span>
+          <span class="skill-tag">Error messages</span>
+          <span class="skill-tag">Push notifications</span>
+          <span class="skill-tag">Style guides</span>
+          <span class="skill-tag">App store copy</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Design &amp; Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Kotlin / Android Studio</span>
+          <span class="skill-tag">UX Research</span>
+          <span class="skill-tag">Prototyping</span>
+          <span class="skill-tag">Google Play Console</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Process &amp; Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Bitrix24</span>
+          <span class="skill-tag">Agile / Sprint planning</span>
+          <span class="skill-tag">MS Office (advanced)</span>
+          <span class="skill-tag">AI tools (Claude, GPT)</span>
+          <span class="skill-tag">Cross-functional teams</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Russian — Native</span>
+          <span class="skill-tag">English — B2</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <h2>Background</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-year">2022 – 2023</div>
+        <div class="edu-body">
+          <h3>Android Developer — Full Course</h3>
+          <p>GeekBrains · Online</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2017 – 2018</div>
+        <div class="edu-body">
+          <h3>Advanced Training — Technical Communication &amp; Documentation</h3>
+          <p>PGUPS · St. Petersburg State Railway University</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2004 – 2009</div>
+        <div class="edu-body">
+          <h3>Master of Science — Mechanical Engineering</h3>
+          <p>St. Petersburg State Mining University</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <p class="section-label">Contact</p>
+      <h2>Let's talk</h2>
+      <p>Open to remote roles in technical writing, UX writing, knowledge management, or UI/UX design.</p>
+      <div class="contact-links">
+        <a href="mailto:shumilov.vyacheslavv@gmail.com" class="contact-link primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email me
+        </a>
+        <a href="https://linkedin.com/in/v-shumilov" target="_blank" rel="noopener" class="contact-link secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://t.me/wshum" target="_blank" rel="noopener" class="contact-link secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          Telegram
+        </a>
+        <a href="https://www.behance.net/vvshum" target="_blank" rel="noopener" class="contact-link secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12h6m-6 4h8m-8-8h5"/><path d="M14 8h8m-5 0v8m0-8a4 4 0 0 1 0 8"/></svg>
+          Behance
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    Viacheslav Shumilov · Montenegro · 2025
+  </div>
+</footer>
+
+</body>
+</html>
